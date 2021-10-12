@@ -1,0 +1,56 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model IEnumerable<IdentityUser>
+
+@{
+    ViewData["Title"] = "User List";
+}
+
+<h3>@ViewData["Title"]</h3>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>User</th>
+                        <th>Email</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                <div class="row">
+                                    <div class="col-sm">
+                                        <a>
+                                            @item.UserName
+                                        </a>
+                                        <br />
+                                        <small>
+                                            @item.Id
+                                        </small>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <a>
+                                    @item.Email
+                                </a>
+                            </td>
+                            <td>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action</button>
+                                </div>
+                                <div class="dropdown-menu shadow animate--grow-in">
+                                    <a style="margin-right:16px" asp-controller="Role" asp-action="Index" asp-route-userId="@item.Id" class="dropdown-item"><i class="fas fa-wrench"></i>Manage Roles</a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
